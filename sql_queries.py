@@ -69,15 +69,7 @@ time_table_create = ("""
 songplay_table_insert = ("""
   INSERT INTO songplays (start_time, user_id, level, song_id, artist_id, session_id, location, user_agent)
   VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-  ON CONFLICT (start_time) 
-  DO UPDATE SET
-    user_id = EXCLUDED.user_id,
-    level = EXCLUDED.level,
-    song_id = EXCLUDED.song_id,
-    artist_id = EXCLUDED.artist_id,
-    session_id = EXCLUDED.session_id,
-    location = EXCLUDED.location,
-    user_agent = EXCLUDED.user_agent;
+  ON CONFLICT DO NOTHING;
 """)
 
 user_table_insert = ("""
@@ -85,21 +77,13 @@ user_table_insert = ("""
   VALUES (%s, %s, %s, %s, %s)
   ON CONFLICT (user_id) 
   DO UPDATE SET
-    first_name = EXCLUDED.first_name,
-    last_name = EXCLUDED.last_name,
-    gender = EXCLUDED.gender,
     level = EXCLUDED.level;
 """)
 
 song_table_insert = ("""
   INSERT INTO songs (song_id, title, artist_id, year, duration)
   VALUES (%s, %s, %s, %s, %s)
-  ON CONFLICT (song_id) 
-  DO UPDATE SET
-    title = EXCLUDED.title,
-    artist_id = EXCLUDED.artist_id,
-    year = EXCLUDED.year,
-    duration = EXCLUDED.duration;
+  ON CONFLICT DO NOTHING
 """)
 
 artist_table_insert = ("""

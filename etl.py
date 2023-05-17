@@ -53,7 +53,7 @@ def process_log_file(cur, filepath):
         cur.execute(time_table_insert, list(row))
 
     # load user table
-    user_df = df[['userId', 'firstName', 'lastName', 'gender', 'level']].drop_duplicates()
+    user_df = df[['userId', 'firstName', 'lastName', 'gender', 'level']]
     
     # filter out records with userId == ''
     user_df = user_df[user_df['userId'] != '']
