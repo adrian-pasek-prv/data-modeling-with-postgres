@@ -55,8 +55,6 @@ def process_log_file(cur, filepath):
     # load user table
     user_df = df[['userId', 'firstName', 'lastName', 'gender', 'level']]
     
-    # filter out records with userId == ''
-    user_df = user_df[user_df['userId'] != '']
 
     # insert user records
     for i, row in user_df.iterrows():
